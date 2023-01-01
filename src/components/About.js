@@ -1,35 +1,28 @@
 import React, {useState} from 'react'
 
-export default function About() {
-    const [btnText, setBtnText] = useState("Enable Dark Mode")
-    const [myStyle, setMyStyle] = useState({
-        backgroundColor: 'black',
-        color: 'white',
-        border: "0.5px solid white"
-    });
-    const toggleStyle =()=>{
-        if(myStyle.color==="white"){
-            setMyStyle({backgroundColor: 'white',
-            color: 'black',
-            })
-            setBtnText("Enable Dark Mode")
-        }
-        else{
-            setMyStyle({ backgroundColor: 'black',
-            color: 'white',
-            border: "0.5px solid white"})
-            setBtnText("Enable Light Mode")
-        }
+export default function About(props) {
+    // const [myStyle, setMyStyle] = useState({
+    //     backgroundColor: 'black',
+    //     color: 'white',
+    //     border: "0.5px solid white"
+    // });
+    let myStyle={
+        backgroundColor:props.mode==="dark"?"rgb(12 69 129 / 35)":"white",
+        color:props.mode==="dark"?"white":"black",
+        border:"1px solid",
+        borderColor:"dark"?"white":"black"
+
     }
+    
     return (
 
-        <div className='container my-2' style={myStyle}>
+        <div className='container my-2' style={{color:props.mode==="dark"?"white":"black"}}>
             <h1>About Us</h1>
             <div className="accordion accordion-flush" id="accordionFlushExample" style={myStyle}>
                 <div className="accordion-item" >
                     <h2 className="accordion-header" id="flush-headingOne" >
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style={myStyle}>
-                            Accordion Item #1
+                             <strong>Analyze Your text</strong>
                         </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" >
@@ -39,7 +32,7 @@ export default function About() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="flush-headingTwo">
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style={myStyle}>
-                            Accordion Item #2
+                             <strong>Free to use</strong>
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -49,7 +42,7 @@ export default function About() {
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="flush-headingThree" style={myStyle}>
                         <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style={myStyle}>
-                            Accordion Item #3
+                            <strong>Browser Compatible</strong>
                         </button>
                     </h2>
                     <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -57,9 +50,7 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className="container my-2">
-                <button onClick={toggleStyle} className="btn btn-primary">{btnText}</button>
-            </div>
+            
         </div>
     )
 }
